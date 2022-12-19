@@ -1,0 +1,112 @@
+* , *::after, *::before{
+    box-sizing: border-box;
+}
+
+:root{
+    --cell-size:100px;
+    --pointer-size:calc(var(--cell-size)*.9)
+}
+
+.board{
+    display: grid;
+    height: 100vh;
+    width: 100vh;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+    z-index: 1000;
+
+}
+
+.cell{
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;  
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    position: relative; 
+    cursor: pointer;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: none;
+}
+
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8){
+    border-bottom: none;
+}
+
+.cell:first-child,
+.cell:nth-child(4),
+.cell:nth-child(7){
+    border-left: none;
+}
+
+.cell:last-child,
+.cell:nth-child(3),
+.cell:nth-child(6){
+    border-right: none;
+}
+
+.cell.cross::after{
+    content: '';
+    width:calc(var(--pointer-size)*.15);
+    height: var(--pointer-size);
+    background-color: black;
+    transform: rotate(45deg);
+    position: absolute;
+
+}
+
+.cell.cross::before{
+    content: '';
+    width:calc(var(--pointer-size)*.15);
+    height: var(--pointer-size);
+    background-color: black;
+    transform: rotate(-45deg);
+    position: absolute;
+
+}
+
+.cell.circle::after{
+    content: '';
+    width: var(--pointer-size);
+    height: var(--pointer-size);
+    background-color: white;
+    border-radius: 50%;
+    border:calc(var(--pointer-size)*.15) black solid ;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+    
+  }
+
+  .overlay.show{
+    display: flex;
+  }
+
+  button{
+    font-size: 2rem;
+    background-color: orangered;
+    border: none;
+    padding: 1rem;
+  }
